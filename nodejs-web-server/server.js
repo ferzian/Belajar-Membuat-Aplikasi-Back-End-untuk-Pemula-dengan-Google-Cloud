@@ -1,16 +1,9 @@
 // Membuat http server secara native
 const http = require("http");
 
-/**
- * Logika untuk menangani dan menanggapi request dituliskan pada fungsi ini
- *
- * @param request: objek yang berisikan informasi terkait permintaan
- * @param response: objek yang digunakan untuk menanggapi permintaan
- */
-
 const requestListener = (request, response) => {
-  response.setHeader("Content-TYpe", "text/html");
-  // response.statusCode = 200;
+  response.setHeader("Content-Type", "application/json");
+  response.setHeader("X-Powered-By", "NodeJS" );
 
   const { method, url } = request; //bisa juga menggunakan 'const method = request.method;'
 
@@ -32,11 +25,11 @@ const requestListener = (request, response) => {
     } else if (method === "POST") {
       // body request (mengambil data dari body)
       let body = [];
-      
+
       request.on("data", (chunk) => {
         body.push(chunk);
       });
-      
+
       request.on("end", () => {
         body = Buffer.concat(body).toString();
         const { name } = JSON.parse(body);
