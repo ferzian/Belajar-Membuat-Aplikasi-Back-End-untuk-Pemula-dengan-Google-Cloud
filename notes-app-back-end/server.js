@@ -1,1 +1,1 @@
-console.log("letsgoooo app note");
+console.log('letsgoooo app note');
